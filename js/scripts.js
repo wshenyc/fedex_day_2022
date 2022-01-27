@@ -53,15 +53,14 @@ map.on('load', function() {
     data: './data/nyc_zip_code_tabulation_areas_polygons.geojson'
   });
 
-
-  // add outlines for all zips
+//adding fill in case
   map.addLayer({
-    'id': 'zips-outlines',
-    'type': 'line',
+    'id': 'zips-fills',
+    'type': 'fill',
     'source': 'allzip',
     'paint': {
-      'line-color': 'gray',
-      'line-width': 3
+      'fill-color': 'gray',
+      'fill-opacity': 0.3
     }
   });
 
@@ -76,32 +75,36 @@ map.on('load', function() {
     'id': 'total-filings',
     'source': 'ocazips',
     'type': 'fill',
-    'layout': {
-      'visibility' : 'none'
-    },
+    'paint': {
+      'fill-color': 'gray',
+      'fill-opacity': 0
+    }
+    // 'layout': {
+    //   'visibility': 'none'
+    // },
     // only include features for which the "isState"
     // property is "true"
-    'filter': ['>=', 'oca_sum_zips_total_filings', 0],
-    'paint': {
-      'fill-color': [
-        'interpolate',
-        ['linear'],
-        ['get', 'oca_sum_zips_total_filings'],
-        0,
-        'white',
-        300,
-        '#EED322',
-        1500,
-        '#E6B71E',
-        3500,
-        '#DA9C20',
-        8600,
-        '#CA8323',
-        35000,
-        '#B86B25'
-      ],
-      'fill-opacity': 0.75
-    }
+    // 'filter': ['>=', 'oca_sum_zips_total_filings', 0],
+    // 'paint': {
+    //   'fill-color': [
+    //     'interpolate',
+    //     ['linear'],
+    //     ['get', 'oca_sum_zips_total_filings'],
+    //     0,
+    //     'white',
+    //     300,
+    //     '#EED322',
+    //     1500,
+    //     '#E6B71E',
+    //     3500,
+    //     '#DA9C20',
+    //     8600,
+    //     '#CA8323',
+    //     35000,
+    //     '#B86B25'
+    //   ],
+    //   'fill-opacity': 0.75
+    // }
   });
 
   //adding percent represented
@@ -109,32 +112,36 @@ map.on('load', function() {
     'id': 'pct-rep',
     'source': 'ocazips',
     'type': 'fill',
-    'layout': {
-      'visibility' : 'none'
-    },
+    'paint': {
+      'fill-color': 'gray',
+      'fill-opacity': 0
+    }
+    // 'layout': {
+    //   'visibility': 'none'
+    // },
     // only include features for which the "isState"
     // property is "true"
-    'filter': ['>=', 'oca_sum_zips_pct_resp_rep', 0],
-    'paint': {
-      'fill-color': [
-        'interpolate',
-        ['linear'],
-        ['get', 'oca_sum_zips_total_filings'],
-        0,
-        'white',
-        20,
-        '#EED322',
-        40,
-        '#E6B71E',
-        60,
-        '#DA9C20',
-        80,
-        '#CA8323',
-        100,
-        '#B86B25'
-      ],
-      'fill-opacity': 0.75
-    }
+    // 'filter': ['>=', 'oca_sum_zips_pct_resp_rep', 0],
+    // 'paint': {
+    //   'fill-color': [
+    //     'interpolate',
+    //     ['linear'],
+    //     ['get', 'oca_sum_zips_total_filings'],
+    //     0,
+    //     'white',
+    //     20,
+    //     '#EED322',
+    //     40,
+    //     '#E6B71E',
+    //     60,
+    //     '#DA9C20',
+    //     80,
+    //     '#CA8323',
+    //     100,
+    //     '#B86B25'
+    //   ],
+    //   'fill-opacity': 0.75
+    // }
   });
 
   //adding percent appeared
@@ -142,32 +149,36 @@ map.on('load', function() {
     'id': 'pct-app',
     'source': 'ocazips',
     'type': 'fill',
-    'layout': {
-      'visibility' : 'none'
-    },
-    // only include features for which the "isState"
-    // property is "true"
-    'filter': ['>=', 'oca_sum_zips_pct_resp_app', 0],
     'paint': {
-      'fill-color': [
-        'interpolate',
-        ['linear'],
-        ['get', 'oca_sum_zips_total_filings'],
-        0,
-        'white',
-        20,
-        '#EED322',
-        40,
-        '#E6B71E',
-        60,
-        '#DA9C20',
-        80,
-        '#CA8323',
-        100,
-        '#B86B25'
-      ],
-      'fill-opacity': 0.75
+      'fill-color': 'gray',
+      'fill-opacity': 0
     }
+    // 'layout': {
+    //   'visibility': 'none'
+    // },
+    // // only include features for which the "isState"
+    // // property is "true"
+    // 'filter': ['>=', 'oca_sum_zips_pct_resp_app', 0],
+    // 'paint': {
+    //   'fill-color': [
+    //     'interpolate',
+    //     ['linear'],
+    //     ['get', 'oca_sum_zips_total_filings'],
+    //     0,
+    //     'white',
+    //     20,
+    //     '#EED322',
+    //     40,
+    //     '#E6B71E',
+    //     60,
+    //     '#DA9C20',
+    //     80,
+    //     '#CA8323',
+    //     100,
+    //     '#B86B25'
+    //   ],
+    //   'fill-opacity': 0.75
+    // }
   });
 
   //adding total executions
@@ -175,34 +186,86 @@ map.on('load', function() {
     'id': 'total-exec',
     'source': 'ocazips',
     'type': 'fill',
-    'layout': {
-      'visibility' : 'none'
-    },
-    // only include features for which the "isState"
-    // property is "true"
-    'filter': ['>=', 'oca_sum_zips_total_execution', 0],
     'paint': {
-      'fill-color': [
-        'interpolate',
-        ['linear'],
-        ['get', 'oca_sum_zips_total_filings'],
-        0,
-        'white',
-        30,
-        '#EED322',
-        100,
-        '#E6B71E',
-        200,
-        '#DA9C20',
-        400,
-        '#CA8323',
-        2000,
-        '#B86B25'
-      ],
-      'fill-opacity': 0.75
+      'fill-color': 'gray',
+      'fill-opacity': 0.5
+    }
+    // 'layout': {
+    //   'visibility': 'none'
+    // },
+    // // only include features for which the "isState"
+    // // property is "true"
+    // 'filter': ['>=', 'oca_sum_zips_total_execution', 0],
+    // 'paint': {
+    //   'fill-color': [
+    //     'interpolate',
+    //     ['linear'],
+    //     ['get', 'oca_sum_zips_total_filings'],
+    //     0,
+    //     'white',
+    //     30,
+    //     '#EED322',
+    //     100,
+    //     '#E6B71E',
+    //     200,
+    //     '#DA9C20',
+    //     400,
+    //     '#CA8323',
+    //     2000,
+    //     '#B86B25'
+    //   ],
+    //   'fill-opacity': 0.75
+    // }
+  });
+
+  // add outlines for all zips
+  map.addLayer({
+    'id': 'zips-outlines',
+    'type': 'line',
+    'source': 'allzip',
+    'paint': {
+      'line-color': 'gray',
+      'line-width': 3
     }
   });
 
+//   const layers = [
+//   '0-10',
+//   '10-20',
+//   '20-50',
+//   '50-100',
+//   '100-200',
+//   '200-500',
+//   '500-1000',
+//   '1000+'
+// ];
+// const colors = [
+//   '#FFEDA0',
+//   '#FED976',
+//   '#FEB24C',
+//   '#FD8D3C',
+//   '#FC4E2A',
+//   '#E31A1C',
+//   '#BD0026',
+//   '#800026'
+// ];
+
+// create legend
+// const legend = document.getElementById('legend');
+//
+// layers.forEach((layer, i) => {
+//   const color = colors[i];
+//   const item = document.createElement('div');
+//   const key = document.createElement('span');
+//   key.className = 'legend-key';
+//   key.style.backgroundColor = color;
+//
+//   const value = document.createElement('span');
+//   value.innerHTML = `${layer}`;
+//   item.appendChild(key);
+//   item.appendChild(value);
+//   legend.appendChild(item);
+// });
 
   // add outlines for selected zips
   // map.addSource('highlight-feature', {
@@ -239,58 +302,110 @@ map.on('load', function() {
 });
 //
 // After the last frame rendered before the map enters an "idle" state.
-map.on('idle', () => {
-  // If these 4 layers were not added to the map, abort
-  // if (!map.getLayer('total-filings') || !map.getLayer('pct-rep') || !map.getLayer('pct-app') || !map.getLayer('total-exex')) {
-  //   return;
-  // }
+// map.on('idle', () => {
+//   // If these 4 layers were not added to the map, abort
+//   // if (!map.getLayer('total-filings') || !map.getLayer('pct-rep') || !map.getLayer('pct-app') || !map.getLayer('total-exex')) {
+//   //   return;
+//   // }
+//
+//   // Enumerate ids of the layers.
+//   const toggleableLayerIds = ['total-filings', 'pct-rep', 'pct-app', 'total-exec'];
+//
+//   // Set up the corresponding toggle button for each layer.
+//   for (const id of toggleableLayerIds) {
+//     // Skip layers that already have a button set up.
+//     if (document.getElementById(id)) {
+//       continue;
+//     }
+//
+//     // Create a link.
+//     const link = document.createElement('a');
+//     link.id = id;
+//     link.href = '#';
+//     link.textContent = id;
+//     link.className = 'active';
+//
+//     // Show or hide layer when the toggle is clicked.
+//     link.onclick = function(e) {
+//       const clickedLayer = this.textContent;
+//       e.preventDefault();
+//       e.stopPropagation();
+//
+//       const visibility = map.getLayoutProperty(
+//         clickedLayer,
+//         'visibility'
+//       );
+//
+//       // if (clickedLayer == 'pct-rep') {
+//       //   map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+//       //   map.setLayoutProperty('total-filings', 'visibility', 'none');
+//       //   // totfilingsLegend.style.display = 'none';
+//       //   pctrepLegend.style.display = 'block';
+//       // } else {
+//       //   map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+//       //   map.setLayoutProperty('total-filings', 'visibility', 'visible');
+//       //   totfilingsLegend.style.display = 'block';
+//       //   pctrepLegend.style.display = 'none';
+//       // };
+//       // Toggle layer visibility by changing the layout object's visibility property.
+//       if (visibility === 'visible') {
+//         map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+//         map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+//         this.className = '';
+//       } else {
+//         this.className = 'active';
+//         map.setLayoutProperty(
+//           clickedLayer,
+//           'visibility',
+//           'visible'
+//         );
+//       }
+//     };
+//
+//     const layers = document.getElementById('menu');
+//     layers.appendChild(link);
+//   }
+// });
 
-  // Enumerate ids of the layers.
-  const toggleableLayerIds = ['total-filings', 'pct-rep', 'pct-app', 'total-exec'];
-
-  // Set up the corresponding toggle button for each layer.
-  for (const id of toggleableLayerIds) {
-    // Skip layers that already have a button set up.
-    if (document.getElementById(id)) {
-      continue;
-    }
-
-    // Create a link.
-    const link = document.createElement('a');
-    link.id = id;
-    link.href = '#';
-    link.textContent = id;
-    link.className = 'active';
-
-    // Show or hide layer when the toggle is clicked.
-    link.onclick = function(e) {
-      const clickedLayer = this.textContent;
-      e.preventDefault();
-      e.stopPropagation();
-
-      const visibility = map.getLayoutProperty(
-        clickedLayer,
-        'visibility'
-      );
-
-      // Toggle layer visibility by changing the layout object's visibility property.
-      if (visibility === 'visible') {
-        map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-        this.className = '';
-      } else {
-        this.className = 'active';
-        map.setLayoutProperty(
-          clickedLayer,
-          'visibility',
-          'visible'
-        );
-      }
-    };
-
-    const layers = document.getElementById('menu');
-    layers.appendChild(link);
-  }
+map.on('mousemove', (event) => {
+  const zips = map.queryRenderedFeatures(event.point, {
+    layers: ['total-filings']
+  });
+  document.getElementById('pd').innerHTML = zips.length
+    ? `<h3>Zip Code: ${zips[0].properties.postalcode}</h3><p>
+    <strong><em>${zips[0].properties.oca_sum_zips_total_filings}</strong> total filings</em></p>
+    <strong><em>${zips[0].properties.oca_sum_zips_pct_resp_app}</strong>% of respondents had representation</em></p>
+    <strong><em>${zips[0].properties.oca_sum_zips_pct_resp_app}</strong>% of respondents appeared in court</em></p>
+    <strong><em>${zips[0].properties.oca_sum_zips_total_execution}</strong> total number of warrants executed</em></p>
+    `
+     // `<h3>${zips[0].properties.postalcode}</h3><p><strong><em>${zips[0].properties.oca_sum_zips_pct_resp_rep}</strong>% with rep</em></p>`
+    : `<p>Hover over a zip code!</p>`
 });
+
+    // addDisplay.textContent = address;
+    // map.setLayoutProperty('highlight-outline', 'visibility', 'visible');
+    // map.setLayoutProperty('highlight-fill', 'visibility', 'visible');
+    // map.getSource('highlight-feature').setData(e.features[0].geometry);
+    // infoContainer.innerHTML = MCIElements.join('');
+// });
+
+// reminder of all layers: ['total-filings', 'pct-rep', 'pct-app', 'total-exec']
+
+// const totfilingsLegend = document.getElementById('total-filings-legend');
+// const pctrepLegend = document.getElementById('pct-rep-legend');
+// const pctappLegend = document.getElementById('pct-app-legend');
+// const totexecLegend = document.getElementById('total-exec-legend');
+
+// map.on('click', 'menu', function() {
+//   var x = document.getElementById("pct-rep");
+//   if (window.getComputedStyle(x).display === "visible") {
+//     totfilingsLegend.style.display = 'none';
+//     pctrepLegend.style.display = 'block';
+//   } else {
+//     totfilingsLegend.style.display = 'block';
+//     pctrepLegend.style.display = 'none';
+//   }
+// });
 
 //Mouse cursor will change to a pointer when over something clickable
 // map.on('mouseenter', 'mci-lots', function() {
