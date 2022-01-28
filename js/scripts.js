@@ -366,7 +366,7 @@ map.on('click', (event) => {
     layers: ['total-filings']
   });
   document.getElementById('pd').innerHTML = zips.length
-    ? `<h3>Zip Code: ${zips[0].properties.postalcode}</h3><p>
+    ? `<h4>Zip Code: ${zips[0].properties.postalcode}</h4><p>
     <strong><em>${zips[0].properties.oca_sum_zips_total_filings}</strong> total filings</em></p>
     <strong><em>${zips[0].properties.oca_sum_zips_pct_resp_rep}</strong>% of respondents had representation</em></p>
     <strong><em>${zips[0].properties.oca_sum_zips_pct_resp_app}</strong>% of respondents appeared in court</em></p>
