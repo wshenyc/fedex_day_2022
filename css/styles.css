@@ -148,6 +148,8 @@ background: #3074a4;
   padding: 20px;
   margin-top: 20px;
   width: 400px;
+  margin-left: 50px;
+  border-radius: 5px;
 }
 
 /* #legend {

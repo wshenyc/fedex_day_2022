@@ -267,15 +267,15 @@ map.on('load', function() {
 //   legend.appendChild(item);
 // });
 
-  // add outlines for selected zips
-  // map.addSource('highlight-feature', {
-  //   'type': 'geojson',
-  //   'data': {
-  //     'type': 'FeatureCollection',
-  //     'features': []
-  //   }
-  // });
-  //
+//add outlines for selected zips
+  map.addSource('highlight-feature', {
+    'type': 'geojson',
+    'data': {
+      'type': 'FeatureCollection',
+      'features': []
+    }
+  });
+
   // map.addLayer({
   //   'id': 'highlight-fill',
   //   'type': 'fill',
@@ -285,19 +285,19 @@ map.on('load', function() {
   //   }
   // });
   //
-  // map.addLayer({
-  //   'id': 'highlight-outline',
-  //   'type': 'line',
-  //   'source': 'highlight-feature',
-  //   'paint': {
-  //     'line-width': 3,
-  //     'line-opacity': 1,
-  //     'line-color': '#e83553'
-  //   },
-  //   'layout': {
-  //     'line-join': 'bevel'
-  //   }
-  // });
+  map.addLayer({
+    'id': 'highlight-outline',
+    'type': 'line',
+    'source': 'highlight-feature',
+    'paint': {
+      'line-width': 3,
+      'line-opacity': 1,
+      'line-color': '#e83553'
+    },
+    'layout': {
+      'line-join': 'bevel'
+    }
+  });
 
 });
 //
@@ -367,7 +367,7 @@ map.on('load', function() {
 //   }
 // });
 
-map.on('mousemove', (event) => {
+map.on('click', (event) => {
   const zips = map.queryRenderedFeatures(event.point, {
     layers: ['total-filings']
   });
@@ -378,8 +378,10 @@ map.on('mousemove', (event) => {
     <strong><em>${zips[0].properties.oca_sum_zips_pct_resp_app}</strong>% of respondents appeared in court</em></p>
     <strong><em>${zips[0].properties.oca_sum_zips_total_execution}</strong> total number of warrants executed</em></p>
     `
-     // `<h3>${zips[0].properties.postalcode}</h3><p><strong><em>${zips[0].properties.oca_sum_zips_pct_resp_rep}</strong>% with rep</em></p>`
-    : `<p>Hover over a zip code!</p>`
+    : `<p>Click a zip code!</p>`
+    map.getSource('highlight-feature').setData(zips[0].geometry);
+    map.setLayoutProperty('highlight-outline', 'visibility', 'visible');
+
 });
 
     // addDisplay.textContent = address;
