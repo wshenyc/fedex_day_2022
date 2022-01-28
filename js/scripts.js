@@ -186,37 +186,34 @@ map.on('load', function() {
     'id': 'total-exec',
     'source': 'ocazips',
     'type': 'fill',
-    'paint': {
-      'fill-color': 'gray',
-      'fill-opacity': 0.5
-    }
+    // 'paint': {
+    //   'fill-color': 'gray',
+    //   'fill-opacity': 0.5
+    // }
     // 'layout': {
     //   'visibility': 'none'
     // },
-    // // only include features for which the "isState"
-    // // property is "true"
-    // 'filter': ['>=', 'oca_sum_zips_total_execution', 0],
-    // 'paint': {
-    //   'fill-color': [
-    //     'interpolate',
-    //     ['linear'],
-    //     ['get', 'oca_sum_zips_total_filings'],
-    //     0,
-    //     'white',
-    //     30,
-    //     '#EED322',
-    //     100,
-    //     '#E6B71E',
-    //     200,
-    //     '#DA9C20',
-    //     400,
-    //     '#CA8323',
-    //     2000,
-    //     '#B86B25'
-    //   ],
-    //   'fill-opacity': 0.75
-    // }
+    // only include features for which the "isState"
+    // property is "true"
+    'filter': ['>=', 'oca_sum_zips_total_execution', 0],
+    'paint': {
+      'fill-color': [
+        'step',
+        ['get', 'oca_sum_zips_total_execution'],
+        '#ebcccc',
+        50,
+        '#d89999',
+        100,
+        '#c46666',
+        200,
+        '#b13333',
+        500,
+        '#9d0000'
+      ],
+      'fill-opacity': 1
+    }
   });
+
 
   // add outlines for all zips
   map.addLayer({
@@ -225,47 +222,44 @@ map.on('load', function() {
     'source': 'allzip',
     'paint': {
       'line-color': 'gray',
-      'line-width': 3
+      'line-width': 1.5
     }
   });
 
-//   const layers = [
-//   '0-10',
-//   '10-20',
-//   '20-50',
-//   '50-100',
-//   '100-200',
-//   '200-500',
-//   '500-1000',
-//   '1000+'
-// ];
-// const colors = [
-//   '#FFEDA0',
-//   '#FED976',
-//   '#FEB24C',
-//   '#FD8D3C',
-//   '#FC4E2A',
-//   '#E31A1C',
-//   '#BD0026',
-//   '#800026'
-// ];
+  const layers = [
+  '0-50',
+  '50-100',
+  '100-200',
+  '200-500',
+  '500+'
+];
+
+
+const colors = [
+  '#ebcccc',
+  '#d89999',
+  '#c46666',
+  '#b13333',
+  '#9d0000'
+];
 
 // create legend
-// const legend = document.getElementById('legend');
-//
-// layers.forEach((layer, i) => {
-//   const color = colors[i];
-//   const item = document.createElement('div');
-//   const key = document.createElement('span');
-//   key.className = 'legend-key';
-//   key.style.backgroundColor = color;
-//
-//   const value = document.createElement('span');
-//   value.innerHTML = `${layer}`;
-//   item.appendChild(key);
-//   item.appendChild(value);
-//   legend.appendChild(item);
-// });
+const legend = document.getElementById('legend');
+
+layers.forEach((layer, i) => {
+  const color = colors[i];
+  const item = document.createElement('div');
+  const key = document.createElement('span');
+  key.className = 'legend-key';
+  key.style.backgroundColor = color;
+
+  const value = document.createElement('span');
+  value.innerHTML = `${layer}`;
+
+  item.appendChild(key);
+  item.appendChild(value);
+  legend.appendChild(item);
+});
 
 //add outlines for selected zips
   map.addSource('highlight-feature', {
