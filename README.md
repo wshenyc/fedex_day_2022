@@ -8,7 +8,9 @@ I made use of Housing Data Coalition's [nycdb](https://github.com/nycdb/nycdb/wi
 
 ## Usage
 
-Users can click on a zipcode to see the following information: 1) how many housing court cases were filed Jan 1, 2016 to Jan 16, 2022; 2) what percentage of respondents had legal representation; 3) what percentage of respondents appeared in court; and 4) how many warrants of eviction were executed.
+Users can click on a zipcode to see the following information: 1) how many housing court cases were filed Jan 1, 2016 to Jan 16, 2022; 2) what percentage of respondents had legal representation; 3) what percentage of respondents appeared in court; and 4) how many warrants of eviction were executed. 
+
+The map is also currently styled as a chloropleth map showing how many warrants were executed by zip code.
 
 ## Why is this important?
 
